@@ -1,0 +1,41 @@
+{
+  "name": "docta-package",
+  "version": "1.1.0",
+  "description": "This package will contail all the required files to run the docta micro-service app",
+  "main": "index.js",
+  "types": "build/index.d.ts",
+  "files": [
+    "build"
+  ],
+  "scripts": {
+    "clean": "rm -rf build",
+    "build": "npm run clean && tsc",
+    "prepublishOnly": "npm run build",
+    "release:patch": "npm version patch -m 'Release %s' && npm run build && npm publish --access public",
+    "release:minor": "npm version minor -m 'Release %s' && npm run build && npm publish --access public",
+    "release:major": "npm version major -m 'Release %s' && npm run build && npm publish --access public"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/bcryptjs": "^2.4.6",
+    "@types/express": "^5.0.3",
+    "@types/jest": "^30.0.0",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/multer": "^2.0.0",
+    "@types/node": "^24.7.2",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.908.0",
+    "@aws-sdk/s3-request-presigner": "^3.908.0",
+    "bcryptjs": "^3.0.2",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.2",
+    "express": "^5.1.0",
+    "mongoose": "^8.19.1",
+    "reflect-metadata": "^0.2.2",
+    "winston": "^3.18.3",
+    "winston-daily-rotate-file": "^5.0.0"
+  }
+}
