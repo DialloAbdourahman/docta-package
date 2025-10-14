@@ -1,17 +1,18 @@
 import jwt, { JwtPayload } from "jsonwebtoken";
 import { LoggedInUserTokenData } from "../interfaces";
-import { generalConfig } from "../config";
+import { getGeneralConfig } from "../config";
 
 export class TokenUtils {
   static createActivationToken(userId: string): string {
-    return jwt.sign({ userId }, generalConfig.accessTokenSecret);
+    return jwt.sign({ userId }, getGeneralConfig().accessTokenSecret);
   }
 
   static decodeActivationToken(token: string): string | null {
     try {
-      const decoded = jwt.verify(token, generalConfig.activationTokenSecret) as
-        | JwtPayload
-        | string;
+      const decoded = jwt.verify(
+        token,
+        getGeneralConfig().activationTokenSecret
+      ) as JwtPayload | string;
       if (typeof decoded === "string") {
         return null;
       }
@@ -23,15 +24,15 @@ export class TokenUtils {
 
   static createAccessToken(payload: LoggedInUserTokenData): string {
     console.log("General config");
-    console.log(generalConfig);
-    return jwt.sign(payload, generalConfig.accessTokenSecret, {
-      expiresIn: generalConfig.accessTokenExpiry,
+    console.log(getGeneralConfig());
+    return jwt.sign(payload, getGeneralConfig().accessTokenSecret, {
+      expiresIn: getGeneralConfig().accessTokenExpiry,
     });
   }
 
   static createRefreshToken(payload: LoggedInUserTokenData): string {
-    return jwt.sign(payload, generalConfig.refreshTokenSecret, {
-      expiresIn: generalConfig.refreshTokenExpiry,
+    return jwt.sign(payload, getGeneralConfig().refreshTokenSecret, {
+      expiresIn: getGeneralConfig().refreshTokenExpiry,
     });
   }
 
@@ -39,7 +40,7 @@ export class TokenUtils {
     try {
       const decoded = jwt.verify(
         token,
-        generalConfig.refreshTokenSecret
+        getGeneralConfig().refreshTokenSecret
       ) as JwtPayload;
       return {
         id: decoded.id,
@@ -55,7 +56,7 @@ export class TokenUtils {
     try {
       const decoded = jwt.verify(
         token,
-        generalConfig.accessTokenSecret
+        getGeneralConfig().accessTokenSecret
       ) as JwtPayload;
       return {
         id: decoded.id,
@@ -68,14 +69,14 @@ export class TokenUtils {
   }
 
   static createForgotPasswordToken(userId: string): string {
-    return jwt.sign({ userId }, generalConfig.forgotPasswordTokenSecret);
+    return jwt.sign({ userId }, getGeneralConfig().forgotPasswordTokenSecret);
   }
 
   static decodeForgotPasswordToken(token: string): string | null {
     try {
       const decoded = jwt.verify(
         token,
-        generalConfig.forgotPasswordTokenSecret
+        getGeneralConfig().forgotPasswordTokenSecret
       ) as JwtPayload | string;
       if (typeof decoded === "string") {
         return null;

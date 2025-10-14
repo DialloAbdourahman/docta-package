@@ -5,7 +5,7 @@ import {
   S3Client,
 } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
-import { generalConfig } from "../config";
+import { getGeneralConfig } from "../config";
 
 export class AwsS3Helper {
   private s3: S3Client;
@@ -16,10 +16,10 @@ export class AwsS3Helper {
   private signedUrlExpiry = 3600; // 1 hour
 
   constructor() {
-    this.bucketName = generalConfig.awsS3Bucket;
-    this.bucketRegion = generalConfig.awsS3Region;
-    this.accessKey = generalConfig.awsAccessKey;
-    this.secretKey = generalConfig.awsSecretKey;
+    this.bucketName = getGeneralConfig().awsS3Bucket;
+    this.bucketRegion = getGeneralConfig().awsS3Region;
+    this.accessKey = getGeneralConfig().awsAccessKey;
+    this.secretKey = getGeneralConfig().awsSecretKey;
 
     this.s3 = new S3Client({
       credentials: {
