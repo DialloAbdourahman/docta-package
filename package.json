@@ -1,6 +1,6 @@
 {
   "name": "docta-package",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "This package will contail all the required files to run the docta micro-service app",
   "main": "index.js",
   "types": "build/index.d.ts",
