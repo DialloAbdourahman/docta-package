@@ -23,7 +23,7 @@ export class TokenUtils {
 
   static createAccessToken(payload: LoggedInUserTokenData): string {
     console.log("General config");
-    console.log(generalConfig.accessTokenExpiry);
+    console.log(generalConfig);
     return jwt.sign(payload, generalConfig.accessTokenSecret, {
       expiresIn: generalConfig.accessTokenExpiry,
     });
