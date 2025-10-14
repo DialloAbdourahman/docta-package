@@ -15,11 +15,11 @@ import {
   ArrayMaxSize,
 } from "class-validator";
 import { Type } from "class-transformer";
-import { EducationInputDto } from ".";
-import { PositionInputDto } from ".";
-import { LanguageInputDto } from ".";
-import { FaqInputDto } from ".";
-import { LocationInputDto } from ".";
+import { EducationInputDto } from "./education";
+import { PositionInputDto } from "./position";
+import { LanguageInputDto } from "./language";
+import { FaqInputDto } from "./faq";
+import { LocationInputDto } from "./location";
 
 export class CreateDoctorDto {
   @IsString()

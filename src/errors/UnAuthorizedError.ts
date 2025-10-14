@@ -1,4 +1,4 @@
-import { CustomError } from ".";
+import { CustomError } from "./CustomError";
 import { EnumStatusCode } from "../enums";
 import { ErrorResult } from "../utils";
 

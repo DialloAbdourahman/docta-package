@@ -1,11 +1,11 @@
 import { IDoctorDocument } from "../../models";
-import { SpecialtyOutputDto } from ".";
-import { UserOutputDto } from ".";
-import { EducationOutputDto } from ".";
-import { PositionOutputDto } from ".";
-import { LanguageOutputDto } from ".";
-import { FaqOutputDto } from ".";
-import { LocationOutputDto } from ".";
+import { SpecialtyOutputDto } from "./specialty";
+import { UserOutputDto } from "./user";
+import { EducationOutputDto } from "./education";
+import { PositionOutputDto } from "./position";
+import { LanguageOutputDto } from "./language";
+import { FaqOutputDto } from "./faq";
+import { LocationOutputDto } from "./location";
 
 // Base DTO for everyone
 export class DoctorOutputDto {

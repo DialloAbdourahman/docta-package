@@ -1,6 +1,6 @@
 import { Gender } from "../../enums";
 import { IPatientDocument } from "../../models";
-import { UserOutputDto } from ".";
+import { UserOutputDto } from "./user";
 
 // Base DTO for everyone
 export class PatientOutputDto {

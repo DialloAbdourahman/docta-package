@@ -1,5 +1,5 @@
 import { Schema, model, Document, Model } from "mongoose";
-import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from ".";
+import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from "./base";
 
 export interface ILocalizedSpecialtyFields {
   name: string;

@@ -1,6 +1,6 @@
 import { Schema, model, Document, Model } from "mongoose";
-import { IUserDocument, UserModel } from ".";
-import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from ".";
+import { IUserDocument, UserModel } from "./user";
+import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from "./base";
 import { Gender } from "../enums";
 
 export interface IPatient extends IBaseModel {

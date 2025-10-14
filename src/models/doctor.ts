@@ -1,12 +1,12 @@
 import { Schema, model, Document, Model } from "mongoose";
-import { ISpecialtyDocument, SpecialtyModel } from ".";
-import { IUserDocument, UserModel } from ".";
-import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from ".";
-import { EducationSchema, IEducation } from ".";
-import { PositionSchema, IPosition } from ".";
-import { LanguageSchema, ILanguage } from ".";
-import { FaqSchema, IFaq } from ".";
-import { LocationSchema, ILocation } from ".";
+import { ISpecialtyDocument, SpecialtyModel } from "./specialty";
+import { IUserDocument, UserModel } from "./user";
+import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from "./base";
+import { EducationSchema, IEducation } from "./education";
+import { PositionSchema, IPosition } from "./position";
+import { LanguageSchema, ILanguage } from "./language";
+import { FaqSchema, IFaq } from "./faq";
+import { LocationSchema, ILocation } from "./location";
 
 export interface IDoctor extends IBaseModel {
   name: string;

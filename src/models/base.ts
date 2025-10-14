@@ -1,5 +1,5 @@
 import { Schema, SchemaDefinition } from "mongoose";
-import { IUserDocument } from ".";
+import { IUserDocument } from "./user";
 
 export interface IBaseModel {
   isDeleted: boolean;

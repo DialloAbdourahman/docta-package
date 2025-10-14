@@ -1,7 +1,7 @@
 import { Schema, model, Document, Model } from "mongoose";
 import { EnumUserRole } from "../enums";
 const bcrypt = require("bcryptjs");
-import { IBaseModel, BaseSchemaFields, BaseSchemaPlugin } from ".";
+import { IBaseModel, BaseSchemaFields, BaseSchemaPlugin } from "./base";
 
 export interface IUser extends IBaseModel {
   role: EnumUserRole;

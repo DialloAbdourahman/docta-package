@@ -1,5 +1,5 @@
 import { ISpecialtyDocument } from "../../models";
-import { UserOutputDto } from ".";
+import { UserOutputDto } from "./user";
 
 // Base DTO for everyone
 export class SpecialtyOutputDto {
