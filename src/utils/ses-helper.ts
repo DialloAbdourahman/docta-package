@@ -40,7 +40,7 @@ export class AwsSesHelper {
       subject,
       html,
     };
-
+    console.log(`Sending email with subject ${subject} to ${receiver}`);
     const data = await this.transporter.sendMail(mailOptions);
     return data;
   }
