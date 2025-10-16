@@ -10,6 +10,10 @@ interface GeneralConfig {
   forgotPasswordTokenSecret: string;
   activationTokenSecret: string;
   rabbitmqHost: string;
+  awsSesHost: string;
+  awsSesPort: number;
+  awsSesUsername: string;
+  awsSesPassword: string;
 }
 
 export const getGeneralConfig = (): GeneralConfig => ({
@@ -24,4 +28,9 @@ export const getGeneralConfig = (): GeneralConfig => ({
   forgotPasswordTokenSecret: process.env.FORGOT_PASSWORD_TOKEN_SECRET ?? "",
   activationTokenSecret: process.env.ACTIVATION_TOKEN_SECRET ?? "",
   rabbitmqHost: process.env.RABBITMQ_HOST ?? "",
+
+  awsSesHost: process.env.AWS_SES_HOST ?? "",
+  awsSesPort: Number(process.env.AWS_SES_PORT ?? 0),
+  awsSesUsername: process.env.AWS_SES_USERNAME ?? "",
+  awsSesPassword: process.env.AWS_SES_PASSWORD ?? "",
 });
