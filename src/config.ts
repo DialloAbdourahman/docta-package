@@ -9,6 +9,7 @@ interface GeneralConfig {
   awsS3Region: string;
   forgotPasswordTokenSecret: string;
   activationTokenSecret: string;
+  rabbitmqHost: string;
 }
 
 export const getGeneralConfig = (): GeneralConfig => ({
@@ -22,4 +23,5 @@ export const getGeneralConfig = (): GeneralConfig => ({
   awsS3Region: process.env.AWS_S3_REGION ?? "",
   forgotPasswordTokenSecret: process.env.FORGOT_PASSWORD_TOKEN_SECRET ?? "",
   activationTokenSecret: process.env.ACTIVATION_TOKEN_SECRET ?? "",
+  rabbitmqHost: process.env.RABBITMQ_HOST ?? "",
 });
