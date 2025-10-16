@@ -15,7 +15,7 @@ export async function publishToTopicExchange<T>({
 }: PublishOptions<T>) {
   try {
     // Connect to RabbitMQ server
-    const connection = await amqp.connect(getGeneralConfig().rabbitmqHost); // Replace with your RabbitMQ URL
+    const connection = await amqp.connect(getGeneralConfig().rabbitmqHost);
     const channel = await connection.createChannel();
 
     // Assert the topic exchange exists

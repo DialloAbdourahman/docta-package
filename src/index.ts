@@ -10,6 +10,7 @@ export * from "./utils";
 export * from "./config";
 export * from "./interfaces";
 export * from "./enums";
+export * from "./rabbitmq";
 
 declare global {
   namespace Express {
