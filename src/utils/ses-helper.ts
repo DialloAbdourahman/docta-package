@@ -23,12 +23,17 @@ export class AwsSesHelper {
     });
   }
 
-  async sendEmail(
-    receiver: string,
-    sender: string,
-    html: string,
-    subject: string
-  ) {
+  async sendEmail({
+    receiver,
+    sender,
+    html,
+    subject,
+  }: {
+    receiver: string;
+    sender: string;
+    html: string;
+    subject: string;
+  }) {
     const mailOptions: Mail.Options = {
       from: sender,
       to: receiver,
