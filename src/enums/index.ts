@@ -5,3 +5,4 @@ export * from "./gender";
 export * from "./routing-keys";
 export * from "./exchanges";
 export * from "./queues";
+export * from "./period.status";

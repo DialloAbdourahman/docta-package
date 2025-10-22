@@ -5,6 +5,7 @@ export * from "./faq";
 export * from "./language";
 export * from "./location";
 export * from "./patient";
+export * from "./period";
 export * from "./position";
 export * from "./specialty";
 export * from "./user";
