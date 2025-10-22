@@ -6,7 +6,7 @@ import { PeriodStatus } from "../../enums/period.status";
 // Base DTO for everyone
 export class PeriodOutputDto {
   id: string;
-  doctor: string;
+  doctorId: string;
   startTime: number;
   endTime: number;
   status: PeriodStatus;
@@ -17,7 +17,7 @@ export class PeriodOutputDto {
 
   constructor(period: IPeriodDocument) {
     this.id = period.id.toString();
-    this.doctor = period.doctor.id;
+    this.doctorId = period.doctor.id;
     this.startTime = period.startTime;
     this.endTime = period.endTime;
     this.status = period.status;
