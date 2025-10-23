@@ -1,5 +1,4 @@
 import { IPeriodDocument } from "../../models";
-import { DoctorOutputDto } from "./doctor";
 import { UserOutputDto } from "./user";
 import { PeriodStatus } from "../../enums/period.status";
 
