@@ -118,3 +118,34 @@ export class UpdateDoctorDto {
   @Type(() => LocationInputDto)
   location?: LocationInputDto;
 }
+
+export class DoctorFilterDto {
+  @IsOptional()
+  @IsString()
+  @MinLength(1)
+  @MaxLength(50)
+  name?: string;
+
+  @IsOptional()
+  @IsMongoId()
+  specialtyId?: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  minConsultationFee?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  maxConsultationFee?: number;
+
+  @IsOptional()
+  @IsBoolean()
+  isVerified?: boolean;
+
+  @IsOptional()
+  @IsArray()
+  @IsString({ each: true })
+  expertises?: string[];
+}
