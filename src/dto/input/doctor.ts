@@ -148,4 +148,8 @@ export class DoctorFilterDto {
   @IsArray()
   @IsString({ each: true })
   expertises?: string[];
+
+  @IsOptional()
+  @IsEmail()
+  email?: string;
 }
