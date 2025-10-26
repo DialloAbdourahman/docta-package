@@ -5,6 +5,24 @@ export type ErrorResult = {
   message: string;
 };
 
+export type SimpleItemResult<T> = {
+  code: EnumStatusCode;
+  message: string;
+  data:
+    | {
+        item: T;
+      }
+    | undefined;
+};
+
+export type SimpleListResult<T> = {
+  code: EnumStatusCode;
+  message: string;
+  data: {
+    items: T[];
+  };
+};
+
 export type PaginatedResult<T> = {
   code: EnumStatusCode;
   message: string;
@@ -15,16 +33,6 @@ export type PaginatedResult<T> = {
     page: number;
     totalPages: number;
   };
-};
-
-export type SimpleItemResult<T> = {
-  code: EnumStatusCode;
-  message: string;
-  data:
-    | {
-        item: T;
-      }
-    | undefined;
 };
 
 export class OrchestrationResult {
@@ -69,6 +77,22 @@ export class OrchestrationResult {
       code,
       message,
       data: data === undefined ? undefined : { item: data },
+    };
+  }
+
+  static list<T>({
+    code,
+    data,
+    message,
+  }: {
+    code: EnumStatusCode;
+    message: string;
+    data: T[];
+  }): SimpleListResult<T> {
+    return {
+      code,
+      message,
+      data: { items: data },
     };
   }
 }
