@@ -105,11 +105,11 @@ export class UpdateDoctorDto {
   @Type(() => FaqInputDto)
   faqs?: FaqInputDto[];
 
-  // Replace-all expertises array (array of strings)
+  // Replace-all expertises array (array of expertise IDs)
   @IsOptional()
   @IsArray()
   @ArrayMaxSize(5, { message: "A maximum of 5 expertises is allowed" })
-  @IsString({ each: true })
+  @IsMongoId({ each: true })
   expertises?: string[];
 
   // Optional location object (replace-all when provided)
@@ -146,7 +146,7 @@ export class DoctorFilterDto {
 
   @IsOptional()
   @IsArray()
-  @IsString({ each: true })
+  @IsMongoId({ each: true })
   expertises?: string[];
 
   @IsOptional()
