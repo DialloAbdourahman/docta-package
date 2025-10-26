@@ -12,6 +12,7 @@ export interface IUser extends IBaseModel {
   forgotPasswordToken?: string | null;
   token?: string | null;
   isActive: boolean;
+  timezone: string;
 }
 
 export interface IUserDocument extends IUser, Document {
@@ -31,6 +32,7 @@ const UserSchema = new Schema<IUserDocument>({
   forgotPasswordToken: { type: String, default: null },
   token: { type: String, default: null },
   isActive: { type: Boolean, default: false },
+  timezone: { type: String, required: true },
   role: {
     type: String,
     enum: Object.values(EnumUserRole),

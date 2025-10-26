@@ -22,6 +22,10 @@ export class CreateUserDto {
   @MaxLength(30)
   @IsStrongPassword()
   password: string;
+
+  @IsString()
+  @IsNotEmpty()
+  timezone: string;
 }
 
 export class LoginDto {
@@ -70,6 +74,10 @@ export class UpdateUserDto {
   @MinLength(3)
   @MaxLength(50)
   name: string;
+
+  @IsOptional()
+  @IsString()
+  timezone?: string;
 }
 
 export class UpdatePasswordDto {

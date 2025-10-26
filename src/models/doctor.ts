@@ -27,7 +27,6 @@ export interface IDoctor extends IBaseModel {
   faqs: IFaq[];
   expertises: IExpertiseDocument[];
   location?: ILocation;
-  timezone: string;
 }
 
 export interface IDoctorDocument extends IDoctor, Document {}
@@ -66,7 +65,6 @@ const DoctorSchema = new Schema<IDoctorDocument>({
     default: [],
   },
   location: { type: LocationSchema, required: false },
-  timezone: { type: String, required: true },
 });
 
 const createSlug = (text: string): string =>

@@ -7,6 +7,7 @@ export class UserOutputDto {
   email: string;
   role: string;
   isActive: boolean;
+  timezone: string;
   isDeleted: boolean;
   createdAt: number;
   updatedAt: number;
@@ -18,6 +19,7 @@ export class UserOutputDto {
     this.role = user.role;
 
     this.isActive = user.isActive;
+    this.timezone = user.timezone;
     this.isDeleted = user.isDeleted;
     this.createdAt = user.createdAt;
     this.updatedAt = user.updatedAt;
