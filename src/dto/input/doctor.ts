@@ -42,6 +42,10 @@ export class CreateDoctorDto {
   @IsNumber()
   @Min(0)
   consultationFee?: number;
+
+  @IsString()
+  @IsNotEmpty()
+  timezone: string;
 }
 
 export class ActivateDoctorAccountDto {
@@ -117,6 +121,10 @@ export class UpdateDoctorDto {
   @ValidateNested()
   @Type(() => LocationInputDto)
   location?: LocationInputDto;
+
+  @IsOptional()
+  @IsString()
+  timezone?: string;
 }
 
 export class DoctorFilterDto {

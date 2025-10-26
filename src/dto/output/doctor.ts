@@ -27,6 +27,7 @@ export class DoctorOutputDto {
   faqs: FaqOutputDto[];
   expertises: ExpertiseOutputDto[];
   location: LocationOutputDto | null;
+  timezone: string;
 
   isDeleted: boolean;
   createdAt: number;
@@ -60,6 +61,7 @@ export class DoctorOutputDto {
     this.location = doctor.location
       ? new LocationOutputDto(doctor.location)
       : null;
+    this.timezone = doctor.timezone;
     this.isDeleted = doctor.isDeleted;
     this.createdAt = doctor.createdAt;
     this.updatedAt = doctor.updatedAt;
