@@ -1,5 +1,6 @@
 import { Schema, model, Document, Model } from "mongoose";
 import { ISpecialtyDocument, SpecialtyModel } from "./specialty";
+import { IExpertiseDocument, ExpertiseModel } from "./expertise";
 import { IUserDocument, UserModel } from "./user";
 import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from "./base";
 import { EducationSchema, IEducation } from "./education";
@@ -24,7 +25,7 @@ export interface IDoctor extends IBaseModel {
   positions: IPosition[];
   languages: ILanguage[];
   faqs: IFaq[];
-  expertises: string[];
+  expertises: IExpertiseDocument[];
   location?: ILocation;
 }
 
@@ -58,7 +59,11 @@ const DoctorSchema = new Schema<IDoctorDocument>({
   positions: { type: [PositionSchema], required: true, default: [] },
   languages: { type: [LanguageSchema], required: true, default: [] },
   faqs: { type: [FaqSchema], required: true, default: [] },
-  expertises: { type: [String], required: true, default: [] },
+  expertises: {
+    type: [{ type: Schema.Types.ObjectId, ref: ExpertiseModel }],
+    required: true,
+    default: [],
+  },
   location: { type: LocationSchema, required: false },
 });
 

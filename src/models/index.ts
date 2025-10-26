@@ -1,6 +1,7 @@
 export * from "./base";
 export * from "./doctor";
 export * from "./education";
+export * from "./expertise";
 export * from "./faq";
 export * from "./language";
 export * from "./location";

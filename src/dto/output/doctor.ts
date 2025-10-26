@@ -1,5 +1,6 @@
 import { IDoctorDocument } from "../../models";
 import { SpecialtyOutputDto } from "./specialty";
+import { ExpertiseOutputDto } from "./expertise";
 import { UserOutputDto } from "./user";
 import { EducationOutputDto } from "./education";
 import { PositionOutputDto } from "./position";
@@ -24,7 +25,7 @@ export class DoctorOutputDto {
   positions: PositionOutputDto[];
   languages: LanguageOutputDto[];
   faqs: FaqOutputDto[];
-  expertises: string[];
+  expertises: ExpertiseOutputDto[];
   location: LocationOutputDto | null;
 
   isDeleted: boolean;
@@ -53,7 +54,9 @@ export class DoctorOutputDto {
       (l) => new LanguageOutputDto(l)
     );
     this.faqs = (doctor.faqs || []).map((f) => new FaqOutputDto(f));
-    this.expertises = doctor.expertises || [];
+    this.expertises = (doctor.expertises || []).map(
+      (e) => new ExpertiseOutputDto(e)
+    );
     this.location = doctor.location
       ? new LocationOutputDto(doctor.location)
       : null;
