@@ -26,6 +26,19 @@ export class PeriodOutputDto {
   }
 }
 
+// Extended DTO for doctor's responses
+export class PeriodDoctorOutputDto extends PeriodOutputDto {
+  // sessionInfo: SessionOutputDto | null;
+
+  constructor(period: IPeriodDocument) {
+    super(period); // call base constructor
+
+    // this.createdBy = period.createdBy
+    //   ? new UserOutputDto(period.createdBy)
+    //   : null;
+  }
+}
+
 // Extended DTO for admin responses
 export class PeriodAdminOutputDto extends PeriodOutputDto {
   createdBy: UserOutputDto | null;
