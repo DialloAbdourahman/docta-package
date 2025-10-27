@@ -7,3 +7,4 @@ export * from "./exchanges";
 export * from "./queues";
 export * from "./period.status";
 export * from "./notification.types";
+export * from "./session.status";
