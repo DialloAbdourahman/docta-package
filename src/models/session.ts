@@ -9,7 +9,7 @@ import { SessionStatus } from "../enums/session.status";
  */
 export interface ISessionConfig {
   collectionPercentage: number; // e.g. percentage for Tranzak
-  distributionPercentage: number; // e.g. platform commission
+  disbursementPercentage: number; // e.g. platform commission
 }
 
 /**
@@ -60,12 +60,12 @@ const SessionSchema = new Schema<ISessionDocument>({
   doctorPrice: { type: Number, required: true },
   platformPrice: { type: Number, required: true },
   paymentApiPrice: { type: Number, required: true },
-  hasDoctorCollected: { type: Boolean, required: true, default: false },
-  hasPlatformCollected: { type: Boolean, required: true, default: false },
   config: {
     collectionPercentage: { type: Number, required: true },
-    distributionPercentage: { type: Number, required: true },
+    disbursementPercentage: { type: Number, required: true },
   },
+  hasDoctorCollected: { type: Boolean, required: true, default: false },
+  hasPlatformCollected: { type: Boolean, required: true, default: false },
 });
 
 SessionSchema.plugin(BaseSchemaPlugin);

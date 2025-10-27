@@ -6,7 +6,7 @@ import { UserOutputDto } from "./user";
 // Interface for session configuration output
 interface ISessionConfigOutput {
   collectionPercentage: number;
-  distributionPercentage: number;
+  disbursementPercentage: number;
 }
 
 // Base DTO for everyone
@@ -76,7 +76,7 @@ export class SessionAdminOutputDto extends SessionOutputDto {
     this.hasPlatformCollected = session.hasPlatformCollected;
     this.config = {
       collectionPercentage: session.config.collectionPercentage,
-      distributionPercentage: session.config.distributionPercentage,
+      disbursementPercentage: session.config.disbursementPercentage,
     };
 
     this.createdBy = session.createdBy
