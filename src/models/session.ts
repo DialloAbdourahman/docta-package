@@ -21,10 +21,12 @@ export interface ISession extends IBaseModel {
   period: IPeriodDocument;
   patient: IPatientDocument;
   status: SessionStatus;
-  totalPrice: number;
-  doctorPrice: number;
-  paymentApiPrice: number;
-  platformPrice: number;
+  pricing: {
+    totalPrice: number;
+    doctorPrice: number;
+    paymentApiPrice: number;
+    platformPrice: number;
+  };
   hasDoctorCollected: boolean;
   hasPlatformCollected: boolean;
   meta: ISessionConfig;
@@ -58,10 +60,12 @@ const SessionSchema = new Schema<ISessionDocument>({
     default: SessionStatus.Created,
     required: true,
   },
-  totalPrice: { type: Number, required: true },
-  doctorPrice: { type: Number, required: true },
-  platformPrice: { type: Number, required: true },
-  paymentApiPrice: { type: Number, required: true },
+  pricing: {
+    totalPrice: { type: Number, required: true },
+    doctorPrice: { type: Number, required: true },
+    platformPrice: { type: Number, required: true },
+    paymentApiPrice: { type: Number, required: true },
+  },
   meta: {
     originalDoctorConsultationFeePerHour: { type: Number, required: true },
     platformPercentage: { type: Number, required: true },

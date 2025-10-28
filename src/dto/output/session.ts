@@ -36,11 +36,17 @@ export class SessionOutputDto {
 
 // DTO for patients responses
 export class SessionPatientOutputDto extends SessionOutputDto {
-  price: number;
+  pricing: {
+    totalPrice: number;
+    platformPrice: number;
+  };
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
-    this.price = session.totalPrice;
+    this.pricing = {
+      totalPrice: session.pricing.totalPrice,
+      platformPrice: session.pricing.platformPrice,
+    };
   }
 }
 
@@ -50,16 +56,18 @@ export class SessionDoctorOutputDto extends SessionOutputDto {
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
-    this.price = session.doctorPrice;
+    this.price = session.pricing.doctorPrice;
   }
 }
 
 // Extended DTO for admin responses
 export class SessionAdminOutputDto extends SessionOutputDto {
-  totalPrice: number;
-  doctorPrice: number;
-  paymentApiPrice: number;
-  platformPrice: number;
+  pricing: {
+    totalPrice: number;
+    doctorPrice: number;
+    paymentApiPrice: number;
+    platformPrice: number;
+  };
   hasDoctorCollected: boolean;
   hasPlatformCollected: boolean;
   config: ISessionConfigOutput;
@@ -70,10 +78,12 @@ export class SessionAdminOutputDto extends SessionOutputDto {
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
 
-    this.totalPrice = session.totalPrice;
-    this.doctorPrice = session.doctorPrice;
-    this.paymentApiPrice = session.paymentApiPrice;
-    this.platformPrice = session.platformPrice;
+    this.pricing = {
+      totalPrice: session.pricing.totalPrice,
+      doctorPrice: session.pricing.doctorPrice,
+      paymentApiPrice: session.pricing.paymentApiPrice,
+      platformPrice: session.pricing.platformPrice,
+    };
     this.hasDoctorCollected = session.hasDoctorCollected;
     this.hasPlatformCollected = session.hasPlatformCollected;
     this.config = {
