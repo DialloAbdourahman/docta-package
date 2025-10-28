@@ -41,7 +41,7 @@ export class CreateDoctorDto {
   @IsOptional()
   @IsNumber()
   @Min(0)
-  consultationFee?: number;
+  consultationFeePerHour?: number;
 
   @IsString()
   @IsNotEmpty()

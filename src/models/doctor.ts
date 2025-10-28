@@ -16,7 +16,7 @@ export interface IDoctor extends IBaseModel {
   user: IUserDocument;
   specialty: ISpecialtyDocument;
   biography: string;
-  consultationFee: number;
+  consultationFeePerHour: number;
   isVerified: boolean;
   isVisible: boolean;
   isDeactivatedByAdmin: boolean;
@@ -50,7 +50,7 @@ const DoctorSchema = new Schema<IDoctorDocument>({
   biography: { type: String, required: false },
   slug: { type: String, required: true, unique: true, trim: true },
   isActive: { type: Boolean, default: false },
-  consultationFee: { type: Number, required: false },
+  consultationFeePerHour: { type: Number, required: false },
   isVerified: { type: Boolean, default: false },
   isVisible: { type: Boolean, default: true },
   isDeactivatedByAdmin: { type: Boolean, default: false },

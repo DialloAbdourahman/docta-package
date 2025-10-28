@@ -8,6 +8,8 @@ import { SessionStatus } from "../enums/session.status";
  * Interface for session configuration percentages
  */
 export interface ISessionConfig {
+  originalDoctorConsultationFeePerHour: number;
+  platformPercentage: number;
   collectionPercentage: number; // e.g. percentage for Tranzak
   disbursementPercentage: number; // e.g. platform commission
 }
@@ -61,6 +63,8 @@ const SessionSchema = new Schema<ISessionDocument>({
   platformPrice: { type: Number, required: true },
   paymentApiPrice: { type: Number, required: true },
   config: {
+    originalDoctorConsultationFeePerHour: { type: Number, required: true },
+    platformPercentage: { type: Number, required: true },
     collectionPercentage: { type: Number, required: true },
     disbursementPercentage: { type: Number, required: true },
   },

@@ -5,6 +5,8 @@ import { UserOutputDto } from "./user";
 
 // Interface for session configuration output
 interface ISessionConfigOutput {
+  originalDoctorConsultationFeePerHour: number;
+  platformPercentage: number;
   collectionPercentage: number;
   disbursementPercentage: number;
 }
@@ -75,6 +77,9 @@ export class SessionAdminOutputDto extends SessionOutputDto {
     this.hasDoctorCollected = session.hasDoctorCollected;
     this.hasPlatformCollected = session.hasPlatformCollected;
     this.config = {
+      originalDoctorConsultationFeePerHour:
+        session.config.originalDoctorConsultationFeePerHour,
+      platformPercentage: session.config.platformPercentage,
       collectionPercentage: session.config.collectionPercentage,
       disbursementPercentage: session.config.disbursementPercentage,
     };

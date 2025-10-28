@@ -17,7 +17,7 @@ export class DoctorOutputDto {
   biography: string | null;
   slug: string;
   isActive: boolean;
-  consultationFee: number | null;
+  consultationFeePerHour: number | null;
   isVerified: boolean;
   isVisible: boolean;
   photo: string | null;
@@ -40,7 +40,7 @@ export class DoctorOutputDto {
     this.slug = doctor.slug;
     this.biography = doctor.biography || null;
     this.isActive = doctor.isActive;
-    this.consultationFee = doctor.consultationFee ?? null;
+    this.consultationFeePerHour = doctor.consultationFeePerHour ?? null;
     this.isVerified = doctor.isVerified;
     this.isVisible = doctor.isVisible;
     this.photo = doctor.photo || null;
