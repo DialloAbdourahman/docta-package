@@ -75,7 +75,7 @@ export class UpdateDoctorDto {
   @IsOptional()
   @IsNumber()
   @Min(0)
-  consultationFee?: number;
+  consultationFeePerHour?: number;
 
   @IsOptional()
   @IsBoolean()
