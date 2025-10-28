@@ -78,10 +78,10 @@ export class SessionAdminOutputDto extends SessionOutputDto {
     this.hasPlatformCollected = session.hasPlatformCollected;
     this.config = {
       originalDoctorConsultationFeePerHour:
-        session.config.originalDoctorConsultationFeePerHour,
-      platformPercentage: session.config.platformPercentage,
-      collectionPercentage: session.config.collectionPercentage,
-      disbursementPercentage: session.config.disbursementPercentage,
+        session.meta.originalDoctorConsultationFeePerHour,
+      platformPercentage: session.meta.platformPercentage,
+      collectionPercentage: session.meta.collectionPercentage,
+      disbursementPercentage: session.meta.disbursementPercentage,
     };
 
     this.createdBy = session.createdBy

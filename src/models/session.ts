@@ -27,7 +27,7 @@ export interface ISession extends IBaseModel {
   platformPrice: number;
   hasDoctorCollected: boolean;
   hasPlatformCollected: boolean;
-  config: ISessionConfig;
+  meta: ISessionConfig;
 }
 
 /**
@@ -62,7 +62,7 @@ const SessionSchema = new Schema<ISessionDocument>({
   doctorPrice: { type: Number, required: true },
   platformPrice: { type: Number, required: true },
   paymentApiPrice: { type: Number, required: true },
-  config: {
+  meta: {
     originalDoctorConsultationFeePerHour: { type: Number, required: true },
     platformPercentage: { type: Number, required: true },
     collectionPercentage: { type: Number, required: true },
