@@ -38,14 +38,14 @@ export class SessionOutputDto {
 export class SessionPatientOutputDto extends SessionOutputDto {
   pricing: {
     totalPrice: number;
-    platformPrice: number;
+    paymentApiPrice: number;
   };
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
     this.pricing = {
       totalPrice: session.pricing.totalPrice,
-      platformPrice: session.pricing.platformPrice,
+      paymentApiPrice: session.pricing.paymentApiPrice,
     };
   }
 }
