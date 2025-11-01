@@ -22,7 +22,7 @@ export class SessionOutputDto {
   updatedAt: number;
 
   constructor(session: ISessionDocument) {
-    this.id = session.id.toString();
+    this.id = (session.id ?? session._id)?.toString();
     this.period = new PeriodOutputDto(session.period);
     this.status = session.status;
 
