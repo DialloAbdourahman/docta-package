@@ -35,7 +35,6 @@ export class SessionOutputDto {
 
 // DTO for patients responses
 export class SessionPatientOutputDto extends SessionOutputDto {
-  doctor: DoctorOutputDto;
   pricing: {
     totalPrice: number;
     paymentApiPrice: number;
@@ -43,7 +42,6 @@ export class SessionPatientOutputDto extends SessionOutputDto {
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
-    this.doctor = new DoctorOutputDto(session.doctor);
     this.pricing = {
       totalPrice: session.pricing.totalPrice,
       paymentApiPrice: session.pricing.paymentApiPrice,
