@@ -15,7 +15,6 @@ interface ISessionConfigOutput {
 export class SessionOutputDto {
   id: string;
   period: PeriodOutputDto;
-  patient: PatientOutputDto;
   status: string;
 
   isDeleted: boolean;
@@ -25,7 +24,6 @@ export class SessionOutputDto {
   constructor(session: ISessionDocument) {
     this.id = session.id.toString();
     this.period = new PeriodOutputDto(session.period);
-    this.patient = new PatientOutputDto(session.patient);
     this.status = session.status;
 
     this.isDeleted = session.isDeleted;
@@ -53,15 +51,18 @@ export class SessionPatientOutputDto extends SessionOutputDto {
 // DTO for doctors responses
 export class SessionDoctorOutputDto extends SessionOutputDto {
   price: number;
+  patient: PatientOutputDto;
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
+    this.patient = new PatientOutputDto(session.patient);
     this.price = session.pricing.doctorPrice;
   }
 }
 
 // Extended DTO for admin responses
 export class SessionAdminOutputDto extends SessionOutputDto {
+  patient: PatientOutputDto;
   pricing: {
     totalPrice: number;
     doctorPrice: number;
@@ -78,6 +79,7 @@ export class SessionAdminOutputDto extends SessionOutputDto {
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
 
+    this.patient = new PatientOutputDto(session.patient);
     this.pricing = {
       totalPrice: session.pricing.totalPrice,
       doctorPrice: session.pricing.doctorPrice,
