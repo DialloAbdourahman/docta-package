@@ -15,7 +15,7 @@ export class PeriodOutputDto {
   updatedAt: number;
 
   constructor(period: IPeriodDocument) {
-    this.id = period.id.toString();
+    this.id = (period.id ?? period._id)?.toString();
     this.doctorId = String(period.doctor._id);
     this.startTime = period.startTime;
     this.endTime = period.endTime;
