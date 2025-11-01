@@ -3,6 +3,7 @@ import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from "./base";
 import { PeriodModel, IPeriodDocument } from "./period";
 import { PatientModel, IPatientDocument } from "./patient";
 import { SessionStatus } from "../enums/session.status";
+import { DoctorModel, IDoctorDocument } from "./doctor";
 
 /**
  * Interface for session configuration percentages
@@ -20,6 +21,7 @@ export interface ISessionConfig {
 export interface ISession extends IBaseModel {
   period: IPeriodDocument;
   patient: IPatientDocument;
+  doctor: IDoctorDocument;
   status: SessionStatus;
   pricing: {
     totalPrice: number;
@@ -52,6 +54,11 @@ const SessionSchema = new Schema<ISessionDocument>({
   patient: {
     type: Schema.Types.ObjectId,
     ref: PatientModel.modelName,
+    required: true,
+  },
+  doctor: {
+    type: Schema.Types.ObjectId,
+    ref: DoctorModel.modelName,
     required: true,
   },
   status: {

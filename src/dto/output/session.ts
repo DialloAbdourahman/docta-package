@@ -2,6 +2,7 @@ import { ISessionDocument } from "../../models";
 import { PeriodOutputDto } from "./period";
 import { PatientOutputDto } from "./patient";
 import { UserOutputDto } from "./user";
+import { DoctorOutputDto } from "./doctor";
 
 // Interface for session configuration output
 interface ISessionConfigOutput {
@@ -34,6 +35,7 @@ export class SessionOutputDto {
 
 // DTO for patients responses
 export class SessionPatientOutputDto extends SessionOutputDto {
+  doctor: DoctorOutputDto;
   pricing: {
     totalPrice: number;
     paymentApiPrice: number;
@@ -41,6 +43,7 @@ export class SessionPatientOutputDto extends SessionOutputDto {
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
+    this.doctor = new DoctorOutputDto(session.doctor);
     this.pricing = {
       totalPrice: session.pricing.totalPrice,
       paymentApiPrice: session.pricing.paymentApiPrice,
@@ -50,8 +53,8 @@ export class SessionPatientOutputDto extends SessionOutputDto {
 
 // DTO for doctors responses
 export class SessionDoctorOutputDto extends SessionOutputDto {
-  price: number;
   patient: PatientOutputDto;
+  price: number;
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
