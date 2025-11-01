@@ -14,7 +14,7 @@ export class PatientOutputDto {
   updatedAt: number;
 
   constructor(patient: IPatientDocument) {
-    this.id = patient.id.toString();
+    this.id = (patient.id ?? patient._id)?.toString();
     this.user = new UserOutputDto(patient.user);
     this.dob = patient.dob || null;
     this.phoneNumber = patient.phoneNumber || null;

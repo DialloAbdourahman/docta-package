@@ -12,7 +12,7 @@ export class ExpertiseOutputDto {
   updatedAt: number;
 
   constructor(expertise: IExpertiseDocument) {
-    this.id = expertise.id.toString();
+    this.id = (expertise.id ?? expertise._id)?.toString();
     this.en = {
       name: expertise.en.name,
       description: expertise.en.description || null,

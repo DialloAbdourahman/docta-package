@@ -13,7 +13,7 @@ export class UserOutputDto {
   updatedAt: number;
 
   constructor(user: IUserDocument) {
-    this.id = user.id.toString();
+    this.id = (user.id ?? user._id)?.toString();
     this.name = user.name;
     this.email = user.email;
     this.role = user.role;

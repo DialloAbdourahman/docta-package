@@ -12,7 +12,7 @@ export class SpecialtyOutputDto {
   updatedAt: number;
 
   constructor(specialty: ISpecialtyDocument) {
-    this.id = specialty.id.toString();
+    this.id = (specialty.id ?? specialty._id)?.toString();
     this.en = {
       name: specialty.en.name,
       description: specialty.en.description || null,

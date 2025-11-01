@@ -33,7 +33,7 @@ export class DoctorOutputDto {
   updatedAt: number;
 
   constructor(doctor: IDoctorDocument) {
-    this.id = doctor.id.toString();
+    this.id = (doctor.id ?? doctor._id)?.toString();
     this.user = new UserOutputDto(doctor.user);
     this.name = doctor.name;
     this.specialty = new SpecialtyOutputDto(doctor.specialty);
