@@ -29,9 +29,9 @@ export class SessionOutputDto {
     this.period = new PeriodOutputDto(session.period);
     this.status = session.status;
     this.doctorId =
-      (session.doctor._id ?? session.doctor._id)?.toString() || null;
+      (session.doctor.id ?? session.doctor._id)?.toString() || null;
     this.patientId =
-      (session.patient._id ?? session.patient._id)?.toString() || null;
+      (session.patient.id ?? session.patient._id)?.toString() || null;
     this.isDeleted = session.isDeleted;
     this.createdAt = session.createdAt;
     this.updatedAt = session.updatedAt;

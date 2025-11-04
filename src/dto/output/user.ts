@@ -1,11 +1,21 @@
 import { IUserDocument } from "../../models";
 
-// Base DTO for everyone
-export class UserOutputDto {
+export class UserPublicOutputDto {
   id: string;
   name: string;
   email: string;
   role: string;
+
+  constructor(user: IUserDocument) {
+    this.id = (user.id ?? user._id)?.toString();
+    this.name = user.name;
+    this.email = user.email;
+    this.role = user.role;
+  }
+}
+
+// Base DTO for everyone
+export class UserOutputDto extends UserPublicOutputDto {
   isActive: boolean;
   timezone: string;
   isDeleted: boolean;
@@ -13,11 +23,7 @@ export class UserOutputDto {
   updatedAt: number;
 
   constructor(user: IUserDocument) {
-    this.id = (user.id ?? user._id)?.toString();
-    this.name = user.name;
-    this.email = user.email;
-    this.role = user.role;
-
+    super(user);
     this.isActive = user.isActive;
     this.timezone = user.timezone;
     this.isDeleted = user.isDeleted;
