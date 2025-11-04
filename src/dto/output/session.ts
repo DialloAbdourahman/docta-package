@@ -17,6 +17,8 @@ export class SessionOutputDto {
   id: string;
   period: PeriodOutputDto;
   status: string;
+  doctorId: string | null;
+  patientId: string | null;
 
   isDeleted: boolean;
   createdAt: number;
@@ -26,7 +28,10 @@ export class SessionOutputDto {
     this.id = (session.id ?? session._id)?.toString();
     this.period = new PeriodOutputDto(session.period);
     this.status = session.status;
-
+    this.doctorId =
+      (session.doctor._id ?? session.doctor._id)?.toString() || null;
+    this.patientId =
+      (session.patient._id ?? session.patient._id)?.toString() || null;
     this.isDeleted = session.isDeleted;
     this.createdAt = session.createdAt;
     this.updatedAt = session.updatedAt;
@@ -51,19 +56,20 @@ export class SessionPatientOutputDto extends SessionOutputDto {
 
 // DTO for doctors responses
 export class SessionDoctorOutputDto extends SessionOutputDto {
-  patient: PatientOutputDto;
-  price: number;
+  pricing: {
+    doctorPrice: number;
+  };
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
-    this.patient = new PatientOutputDto(session.patient);
-    this.price = session.pricing.doctorPrice;
+    this.pricing = {
+      doctorPrice: session.pricing.doctorPrice,
+    };
   }
 }
 
 // Extended DTO for admin responses
 export class SessionAdminOutputDto extends SessionOutputDto {
-  patient: PatientOutputDto;
   pricing: {
     totalPrice: number;
     doctorPrice: number;
@@ -80,7 +86,6 @@ export class SessionAdminOutputDto extends SessionOutputDto {
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
 
-    this.patient = new PatientOutputDto(session.patient);
     this.pricing = {
       totalPrice: session.pricing.totalPrice,
       doctorPrice: session.pricing.doctorPrice,
