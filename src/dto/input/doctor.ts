@@ -27,6 +27,10 @@ export class CreateDoctorDto {
   @MaxLength(50)
   title: string;
 
+  @IsOptional()
+  @IsEmail()
+  email?: string;
+
   @IsEmail()
   professionalEmail: string;
 
