@@ -47,11 +47,6 @@ export class CreateDoctorDto {
   @Min(0)
   consultationFeePerHour?: number;
 
-  @IsOptional()
-  @IsNumber()
-  @Min(0)
-  dontBookMeBeforeInMins?: number;
-
   @IsString()
   @IsNotEmpty()
   timezone: string;
