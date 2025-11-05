@@ -11,7 +11,9 @@ import { LocationOutputDto } from "./location";
 export class DoctorPublicOutputDto {
   id: string;
   specialty: SpecialtyOutputDto;
-  name: string;
+  title: string;
+  professionalEmail: string;
+  dontBookMeBeforeInMins: number;
   biography: string | null;
   slug: string;
   isActive: boolean;
@@ -28,7 +30,9 @@ export class DoctorPublicOutputDto {
 
   constructor(doctor: IDoctorDocument) {
     this.id = (doctor.id ?? doctor._id)?.toString();
-    this.name = doctor.name;
+    this.title = doctor.title;
+    this.professionalEmail = doctor.professionalEmail;
+    this.dontBookMeBeforeInMins = doctor.dontBookMeBeforeInMins;
     this.specialty = new SpecialtyOutputDto(doctor.specialty);
     this.slug = doctor.slug;
     this.biography = doctor.biography || null;

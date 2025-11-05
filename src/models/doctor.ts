@@ -10,7 +10,9 @@ import { FaqSchema, IFaq } from "./faq";
 import { LocationSchema, ILocation } from "./location";
 
 export interface IDoctor extends IBaseModel {
-  name: string;
+  title: string;
+  professionalEmail: string;
+  dontBookMeBeforeInMins: number;
   slug: string;
   isActive: boolean;
   user: IUserDocument;
@@ -46,7 +48,9 @@ const DoctorSchema = new Schema<IDoctorDocument>({
     ref: SpecialtyModel,
     required: true,
   },
-  name: { type: String, required: true, trim: true },
+  title: { type: String, required: true, trim: true },
+  professionalEmail: { type: String, required: true, trim: true },
+  dontBookMeBeforeInMins: { type: Number, required: true, default: 30 },
   biography: { type: String, required: false },
   slug: { type: String, required: true, unique: true, trim: true },
   isActive: { type: Boolean, default: false },
@@ -78,7 +82,7 @@ DoctorSchema.pre<IDoctorDocument>("validate", async function (next) {
   // Only set slug if it hasn't been set before
   if (this.slug) return next();
 
-  const baseSlug = createSlug(this.name);
+  const baseSlug = createSlug(this.title);
   let slug = baseSlug;
   let counter = 0;
 

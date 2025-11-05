@@ -25,10 +25,10 @@ export class CreateDoctorDto {
   @IsString()
   @MinLength(3)
   @MaxLength(50)
-  name: string;
+  title: string;
 
   @IsEmail()
-  email: string;
+  professionalEmail: string;
 
   @IsMongoId()
   specialtyId: string;
@@ -42,6 +42,11 @@ export class CreateDoctorDto {
   @IsNumber()
   @Min(0)
   consultationFeePerHour?: number;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  dontBookMeBeforeInMins?: number;
 
   @IsString()
   @IsNotEmpty()
@@ -65,7 +70,16 @@ export class UpdateDoctorDto {
   @IsString()
   @MinLength(3)
   @MaxLength(50)
-  name: string;
+  title: string;
+
+  @IsOptional()
+  @IsEmail()
+  professionalEmail?: string;
+
+  @IsOptional()
+  @IsNumber()
+  @Min(0)
+  dontBookMeBeforeInMins?: number;
 
   @IsOptional()
   @IsString()
