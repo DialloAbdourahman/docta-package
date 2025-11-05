@@ -2,7 +2,7 @@ import { Gender } from "../../enums";
 import { IPatientDocument } from "../../models";
 import { UserOutputDto, UserPublicOutputDto } from "./user";
 
-class BasePatientOutputDto {
+class OutputDto {
   id: string;
   dob: number | null;
   phoneNumber: string | null;
@@ -16,8 +16,17 @@ class BasePatientOutputDto {
   }
 }
 
+export class PatientPublicOutputDto extends OutputDto {
+  user: UserPublicOutputDto;
+
+  constructor(patient: IPatientDocument) {
+    super(patient);
+    this.user = new UserPublicOutputDto(patient.user);
+  }
+}
+
 // Base DTO for everyone
-export class PatientOutputDto extends BasePatientOutputDto {
+export class PatientOutputDto extends OutputDto {
   user: UserOutputDto;
   isDeleted: boolean;
   createdAt: number;
@@ -33,15 +42,6 @@ export class PatientOutputDto extends BasePatientOutputDto {
 }
 
 // Public patient DTO
-
-export class PatientPublicOutputDto extends BasePatientOutputDto {
-  user: UserPublicOutputDto;
-
-  constructor(patient: IPatientDocument) {
-    super(patient);
-    this.user = new UserPublicOutputDto(patient.user);
-  }
-}
 
 // Extended DTO for admin responses
 export class PatientAdminOutputDto extends PatientOutputDto {

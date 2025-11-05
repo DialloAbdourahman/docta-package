@@ -1,17 +1,15 @@
 import { IDoctorDocument } from "../../models";
 import { SpecialtyOutputDto } from "./specialty";
 import { ExpertiseOutputDto } from "./expertise";
-import { UserOutputDto } from "./user";
+import { UserOutputDto, UserPublicOutputDto } from "./user";
 import { EducationOutputDto } from "./education";
 import { PositionOutputDto } from "./position";
 import { LanguageOutputDto } from "./language";
 import { FaqOutputDto } from "./faq";
 import { LocationOutputDto } from "./location";
 
-// Base DTO for everyone
-export class DoctorOutputDto {
+class OutputDto {
   id: string;
-  user: UserOutputDto;
   specialty: SpecialtyOutputDto;
   name: string;
   biography: string | null;
@@ -28,13 +26,8 @@ export class DoctorOutputDto {
   expertises: ExpertiseOutputDto[];
   location: LocationOutputDto | null;
 
-  isDeleted: boolean;
-  createdAt: number;
-  updatedAt: number;
-
   constructor(doctor: IDoctorDocument) {
     this.id = (doctor.id ?? doctor._id)?.toString();
-    this.user = new UserOutputDto(doctor.user);
     this.name = doctor.name;
     this.specialty = new SpecialtyOutputDto(doctor.specialty);
     this.slug = doctor.slug;
@@ -60,6 +53,27 @@ export class DoctorOutputDto {
     this.location = doctor.location
       ? new LocationOutputDto(doctor.location)
       : null;
+  }
+}
+
+export class DoctorPublicOutputDto extends OutputDto {
+  user: UserPublicOutputDto;
+
+  constructor(doctor: IDoctorDocument) {
+    super(doctor);
+    this.user = new UserPublicOutputDto(doctor.user);
+  }
+}
+
+export class DoctorOutputDto extends OutputDto {
+  user: UserOutputDto;
+  isDeleted: boolean;
+  createdAt: number;
+  updatedAt: number;
+
+  constructor(doctor: IDoctorDocument) {
+    super(doctor);
+    this.user = new UserOutputDto(doctor.user);
     this.isDeleted = doctor.isDeleted;
     this.createdAt = doctor.createdAt;
     this.updatedAt = doctor.updatedAt;
