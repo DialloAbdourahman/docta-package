@@ -8,7 +8,7 @@ import { LanguageOutputDto } from "./language";
 import { FaqOutputDto } from "./faq";
 import { LocationOutputDto } from "./location";
 
-class OutputDto {
+export class DoctorPublicOutputDto {
   id: string;
   specialty: SpecialtyOutputDto;
   name: string;
@@ -56,16 +56,7 @@ class OutputDto {
   }
 }
 
-export class DoctorPublicOutputDto extends OutputDto {
-  user: UserPublicOutputDto;
-
-  constructor(doctor: IDoctorDocument) {
-    super(doctor);
-    this.user = new UserPublicOutputDto(doctor.user);
-  }
-}
-
-export class DoctorOutputDto extends OutputDto {
+export class DoctorOutputDto extends DoctorPublicOutputDto {
   user: UserOutputDto;
   isDeleted: boolean;
   createdAt: number;
