@@ -25,6 +25,11 @@ export class CreateDoctorDto {
   @IsString()
   @MinLength(3)
   @MaxLength(50)
+  fullname: string;
+
+  @IsString()
+  @MinLength(3)
+  @MaxLength(50)
   title: string;
 
   @IsOptional()
