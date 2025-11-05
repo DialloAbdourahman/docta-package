@@ -4,10 +4,10 @@ import { getGeneralConfig } from "../config";
 
 export class TokenUtils {
   static createActivationToken(userId: string): string {
-    return jwt.sign({ userId }, getGeneralConfig().accessTokenSecret);
+    return jwt.sign({ userId }, getGeneralConfig().activationTokenSecret);
   }
 
-  static decodeActivationToken(token: string): string | null {
+  static verifyActivationToken(token: string): string | null {
     try {
       const decoded = jwt.verify(
         token,
@@ -72,7 +72,7 @@ export class TokenUtils {
     return jwt.sign({ userId }, getGeneralConfig().forgotPasswordTokenSecret);
   }
 
-  static decodeForgotPasswordToken(token: string): string | null {
+  static verifyForgotPasswordToken(token: string): string | null {
     try {
       const decoded = jwt.verify(
         token,
