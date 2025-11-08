@@ -22,8 +22,7 @@ export const errorHandler = (
     method: req.method,
     body: req.body,
   });
-
-  console.error(err);
+  console.error("Unhandled error", err);
   res.status(500).json({
     code: EnumStatusCode.SOMETHING_WENT_WRONG,
     message: "Internal Server Error",
