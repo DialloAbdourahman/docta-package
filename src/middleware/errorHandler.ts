@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { CustomError } from "../errors";
 import { EnumStatusCode } from "../enums";
 import { logger } from "../utils";
+import axios, { AxiosError } from "axios";
 
 export const errorHandler = (
   err: Error,
@@ -11,6 +12,25 @@ export const errorHandler = (
 ): void => {
   if (err instanceof CustomError) {
     res.status(err.statusCode).json(err.serializeErrors());
+    return;
+  }
+
+  // Handle only Axios timeouts
+  if (axios.isAxiosError(err) && err.code === "ECONNABORTED") {
+    const axiosError = err as AxiosError;
+
+    logger.error("Axios timeout error", {
+      message: err.message,
+      url: axiosError.config?.url,
+      method: axiosError.config?.method,
+      timeout: axiosError.config?.timeout,
+      path: req.originalUrl,
+    });
+
+    res.status(504).json({
+      code: EnumStatusCode.TIMEOUT,
+      message: "Payment request timed out",
+    });
     return;
   }
 
