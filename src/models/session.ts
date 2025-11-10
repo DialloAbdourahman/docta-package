@@ -64,7 +64,7 @@ const SessionSchema = new Schema<ISessionDocument>({
   status: {
     type: String,
     enum: Object.values(SessionStatus),
-    default: SessionStatus.Created,
+    default: SessionStatus.CREATED,
     required: true,
   },
   pricing: {
