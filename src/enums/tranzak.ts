@@ -12,3 +12,7 @@ export enum EnumTranzakPaymentStatus {
   CANCELLED_REFUNDED = "CANCELLED/REFUNDED",
   PAYER_REDIRECT_REQUIRED = "PAYER_REDIRECT_REQUIRED",
 }
+
+export enum EnumTranzakEventType {
+  REQUEST_COMPLETED = "REQUEST.COMPLETED",
+}
