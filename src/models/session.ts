@@ -4,6 +4,7 @@ import { PeriodModel, IPeriodDocument } from "./period";
 import { PatientModel, IPatientDocument } from "./patient";
 import { SessionStatus } from "../enums/session.status";
 import { DoctorModel, IDoctorDocument } from "./doctor";
+import { EnumTranzakPaymentStatus, EnumTranzakCurrency } from "../enums/tranzak";
 
 /**
  * Interface for session configuration percentages
@@ -13,6 +14,18 @@ export interface ISessionConfig {
   platformPercentage: number;
   collectionPercentage: number; // e.g. percentage for Tranzak
   disbursementPercentage: number; // e.g. platform commission
+}
+
+/**
+ * Interface for embedded payment data
+ */
+export interface ISessionPayment {
+  transactionId: string;
+  transactionTime: number;
+  webhookStatus: EnumTranzakPaymentStatus;
+  webhookId: string;
+  amount: number;
+  currency: EnumTranzakCurrency;
 }
 
 /**
@@ -32,6 +45,7 @@ export interface ISession extends IBaseModel {
   hasDoctorCollected: boolean;
   hasPlatformCollected: boolean;
   meta: ISessionConfig;
+  payment?: ISessionPayment;
 }
 
 /**
@@ -81,6 +95,22 @@ const SessionSchema = new Schema<ISessionDocument>({
   },
   hasDoctorCollected: { type: Boolean, required: true, default: false },
   hasPlatformCollected: { type: Boolean, required: true, default: false },
+  payment: {
+    transactionId: { type: String, required: false },
+    transactionTime: { type: Number, required: false },
+    webhookStatus: {
+      type: String,
+      enum: Object.values(EnumTranzakPaymentStatus),
+      required: false,
+    },
+    webhookId: { type: String, required: false },
+    amount: { type: Number, required: false },
+    currency: {
+      type: String,
+      enum: Object.values(EnumTranzakCurrency),
+      required: false,
+    },
+  },
 });
 
 SessionSchema.plugin(BaseSchemaPlugin);

@@ -1,4 +1,4 @@
-import { ISessionDocument } from "../../models";
+import { ISessionDocument, ISessionPayment } from "../../models";
 import { PeriodOutputDto } from "./period";
 import { PatientOutputDto } from "./patient";
 import { UserOutputDto } from "./user";
@@ -79,6 +79,7 @@ export class SessionAdminOutputDto extends SessionOutputDto {
   hasDoctorCollected: boolean;
   hasPlatformCollected: boolean;
   config: ISessionConfigOutput;
+  payment: ISessionPayment | null;
   createdBy: UserOutputDto | null;
   updatedBy: UserOutputDto | null;
   deletedBy: UserOutputDto | null;
@@ -101,6 +102,8 @@ export class SessionAdminOutputDto extends SessionOutputDto {
       collectionPercentage: session.meta.collectionPercentage,
       disbursementPercentage: session.meta.disbursementPercentage,
     };
+
+    this.payment = session.payment || null;
 
     this.createdBy = session.createdBy
       ? new UserOutputDto(session.createdBy)
