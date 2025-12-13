@@ -1,4 +1,4 @@
-export type CancelSessionEvent = {
+export type InitiateRefundEvent = {
   sessionId: string;
   doctorId: string;
   patientId: string;
