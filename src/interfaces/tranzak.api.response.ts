@@ -2,6 +2,8 @@ import {
   EnumTranzakCurrency,
   EnumTranzakEventType,
   EnumTranzakPaymentStatus,
+  EnumTranzakReasonCode,
+  EnumTranzakRefundStatus,
 } from "../enums/tranzak";
 
 export type GetPaymentTokenResponseData = {
@@ -45,29 +47,38 @@ export type CreatePaymentSessionResponseData = {
   };
 };
 
-export type TranzakCreatePaymentSessionRequestDto = {
+export type CreateRefundResponseData = {
+  refundId: string;
+  refundedTransactionId: string;
   amount: number;
   currencyCode: EnumTranzakCurrency;
-  description: string;
-  mchTransactionRef: string;
-  returnUrl: string;
-  cancelUrl: string;
+  status: "COMPLETED";
+  type: "REFUND";
+  merchantRefundRef: string;
+  reasonDescription: string;
+  isInitiatedByText: string;
+  isCancelledByText: string;
+  isApprovedByText: string;
+  note: string;
+  reasonCode: EnumTranzakReasonCode;
+  createdAt: string;
+  approvedAt: string;
 };
 
-export interface TranzakWebhookResponse {
+export interface TranzakWebhookResponse<T> {
   name: string;
   version: string;
   eventType: EnumTranzakEventType;
   merchantId: string;
   appId: string;
   resourceId: string;
-  resource: TranzakWebhookResource;
+  resource: T;
   creationDateTime: string;
   webhookId: string;
   authKey: string;
 }
 
-interface TranzakWebhookResource {
+export interface TranzakWebhookPaymentResource {
   requestId: string;
   amount: number;
   currencyCode: EnumTranzakCurrency;
@@ -113,4 +124,24 @@ interface TranzakWebhookResource {
   };
   errorCode?: number;
   errorMessage?: string;
+}
+
+export interface TranzakWebhookRefundResource {
+  refundId: string;
+  refundedTransactionId: string;
+  serviceId: string;
+  amount: number;
+  currencyCode: EnumTranzakCurrency;
+  status: EnumTranzakRefundStatus;
+  type: "REFUND";
+  merchantRefundRef: string | null;
+  reasonDescription: string;
+  isInitiatedByText: string;
+  isCancelledByText: string | null;
+  isApprovedByText: string;
+  note: string;
+  reasonCode: EnumTranzakReasonCode;
+  reason: string;
+  createdAt: string;
+  approvedAt: string;
 }
