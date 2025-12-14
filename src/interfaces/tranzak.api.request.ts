@@ -13,6 +13,6 @@ export type TranzakCreateRefundRequestDto = {
   refundedTransactionId: string;
   reasonCode: EnumTranzakReasonCode;
   merchantRefundNumber: string;
-  note: string;
-  amount: number;
+  note?: string;
+  amount?: number;
 };
