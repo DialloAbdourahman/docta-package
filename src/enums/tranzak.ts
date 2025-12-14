@@ -13,6 +13,17 @@ export enum EnumTranzakPaymentStatus {
   PAYER_REDIRECT_REQUIRED = "PAYER_REDIRECT_REQUIRED",
 }
 
+export enum EnumTranzakRefundStatus {
+  PENDING = "PENDING",
+  APPROVED = "APPROVED",
+  REJECTED = "REJECTED",
+  ON_HOLD = "ON_HOLD",
+  SUCCESSFUL = "SUCCESSFUL",
+  CANCELLED = "CANCELLED",
+  FAILED = "FAILED",
+}
+
 export enum EnumTranzakEventType {
   REQUEST_COMPLETED = "REQUEST.COMPLETED",
+  REFUND_COMPLETED = "REFUND.COMPLETED",
 }
