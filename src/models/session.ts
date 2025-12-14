@@ -7,6 +7,7 @@ import { DoctorModel, IDoctorDocument } from "./doctor";
 import {
   EnumTranzakPaymentStatus,
   EnumTranzakCurrency,
+  EnumTranzakRefundStatus,
 } from "../enums/tranzak";
 
 /**
@@ -32,6 +33,19 @@ export interface ISessionPayment {
 }
 
 /**
+ * Interface for embedded refund data
+ */
+export interface ISessionRefund {
+  webhookId: string;
+  webhookStatus: EnumTranzakRefundStatus;
+  refundId: string;
+  refundedTransactionId: string;
+  currency: EnumTranzakCurrency;
+  serviceId: string;
+  reason: string;
+}
+
+/**
  * Session interface
  */
 export interface ISession extends IBaseModel {
@@ -49,6 +63,7 @@ export interface ISession extends IBaseModel {
   hasPlatformCollected: boolean;
   meta: ISessionConfig;
   payment?: ISessionPayment;
+  refund?: ISessionRefund;
 }
 
 /**
@@ -113,6 +128,23 @@ const SessionSchema = new Schema<ISessionDocument>({
       enum: Object.values(EnumTranzakCurrency),
       required: false,
     },
+  },
+  refund: {
+    webhookId: { type: String, required: false },
+    webhookStatus: {
+      type: String,
+      enum: Object.values(EnumTranzakRefundStatus),
+      required: false,
+    },
+    refundId: { type: String, required: false },
+    refundedTransactionId: { type: String, required: false },
+    currency: {
+      type: String,
+      enum: Object.values(EnumTranzakCurrency),
+      required: false,
+    },
+    serviceId: { type: String, required: false },
+    reason: { type: String, required: false },
   },
 });
 

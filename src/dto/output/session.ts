@@ -1,4 +1,4 @@
-import { ISessionDocument, ISessionPayment } from "../../models";
+import { ISessionDocument, ISessionPayment, ISessionRefund } from "../../models";
 import { PeriodOutputDto } from "./period";
 import { PatientOutputDto } from "./patient";
 import { UserOutputDto } from "./user";
@@ -19,6 +19,7 @@ export class SessionOutputDto {
   status: string;
   doctorId: string | null;
   patientId: string | null;
+  refund: ISessionRefund | null;
 
   isDeleted: boolean;
   createdAt: number;
@@ -32,6 +33,7 @@ export class SessionOutputDto {
       (session.doctor.id ?? session.doctor._id)?.toString() || null;
     this.patientId =
       (session.patient.id ?? session.patient._id)?.toString() || null;
+    this.refund = session.refund || null;
     this.isDeleted = session.isDeleted;
     this.createdAt = session.createdAt;
     this.updatedAt = session.updatedAt;
