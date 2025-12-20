@@ -70,6 +70,8 @@ export interface ISession extends IBaseModel {
   hasPlatformCollected: boolean;
   meta: ISessionConfig;
   payment?: ISessionPayment;
+  paidAt?: number;
+  cancelledAt?: number;
   refund?: ISessionRefund;
   tranzakErrorDetails?: {
     errorCode: string;
@@ -174,6 +176,8 @@ const SessionSchema = new Schema<ISessionDocument>({
     errorCode: { type: String, required: false },
     errorMessage: { type: String, required: false },
   },
+  paidAt: { type: Number, required: false },
+  cancelledAt: { type: Number, required: false },
 });
 
 SessionSchema.plugin(BaseSchemaPlugin);

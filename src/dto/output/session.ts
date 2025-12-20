@@ -4,9 +4,7 @@ import {
   ISessionRefund,
 } from "../../models";
 import { PeriodOutputDto } from "./period";
-import { PatientOutputDto } from "./patient";
 import { UserOutputDto } from "./user";
-import { DoctorOutputDto } from "./doctor";
 
 // Interface for session configuration output
 interface ISessionConfigOutput {
@@ -24,6 +22,8 @@ export class SessionOutputDto {
   doctorId: string | null;
   patientId: string | null;
   refund: ISessionRefund | null;
+  paidAt: number | null;
+  cancelledAt: number | null;
 
   isDeleted: boolean;
   createdAt: number;
@@ -41,6 +41,8 @@ export class SessionOutputDto {
     this.isDeleted = session.isDeleted;
     this.createdAt = session.createdAt;
     this.updatedAt = session.updatedAt;
+    this.paidAt = session.paidAt || null;
+    this.cancelledAt = session.cancelledAt || null;
   }
 }
 
