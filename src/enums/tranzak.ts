@@ -21,6 +21,7 @@ export enum EnumTranzakRefundStatus {
   SUCCESSFUL = "SUCCESSFUL",
   CANCELLED = "CANCELLED",
   FAILED = "FAILED",
+  PROCESSING = "PROCESSING", // Does not exist in the Tranzak API but we need it.
 }
 
 export enum EnumTranzakEventType {

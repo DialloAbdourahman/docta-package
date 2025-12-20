@@ -46,6 +46,7 @@ export interface ISessionRefund {
   refundStartedAt?: number;
   refundCompletedAt?: number;
   refundFailedAt?: number;
+  status: EnumTranzakRefundStatus;
 }
 
 /**

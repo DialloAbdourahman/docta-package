@@ -52,7 +52,7 @@ export type CreateRefundResponseData = {
   refundedTransactionId: string;
   amount: number;
   currencyCode: EnumTranzakCurrency;
-  status: "COMPLETED";
+  status: EnumTranzakRefundStatus.PROCESSING;
   type: "REFUND";
   merchantRefundRef: string;
   reasonDescription: string;
