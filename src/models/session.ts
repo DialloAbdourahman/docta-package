@@ -43,6 +43,9 @@ export interface ISessionRefund {
   currency: EnumTranzakCurrency;
   serviceId: string;
   reason: string;
+  refundStartedAt?: number;
+  refundCompletedAt?: number;
+  refundFailedAt?: number;
 }
 
 /**
@@ -149,6 +152,9 @@ const SessionSchema = new Schema<ISessionDocument>({
     },
     serviceId: { type: String, required: false },
     reason: { type: String, required: false },
+    refundStartedAt: { type: Number, required: false },
+    refundCompletedAt: { type: Number, required: false },
+    refundFailedAt: { type: Number, required: false },
   },
   tranzakErrorDetails: {
     errorCode: { type: String, required: false },
