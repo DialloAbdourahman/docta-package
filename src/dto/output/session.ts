@@ -92,7 +92,7 @@ export class SessionAdminOutputDto extends SessionOutputDto {
   updatedBy: UserOutputDto | null;
   deletedBy: UserOutputDto | null;
   tranzakErrorDetails: {
-    errorCode: string | null;
+    errorCode: number | null;
     errorMessage: string | null;
   } | null;
 
@@ -130,8 +130,8 @@ export class SessionAdminOutputDto extends SessionOutputDto {
       : null;
     this.tranzakErrorDetails = session.tranzakErrorDetails
       ? {
-          errorCode: session.tranzakErrorDetails.errorCode,
-          errorMessage: session.tranzakErrorDetails.errorMessage,
+          errorCode: session.tranzakErrorDetails.errorCode || null,
+          errorMessage: session.tranzakErrorDetails.errorMessage || null,
         }
       : null;
   }

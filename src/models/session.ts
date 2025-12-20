@@ -74,8 +74,8 @@ export interface ISession extends IBaseModel {
   cancelledAt?: number;
   refund?: ISessionRefund;
   tranzakErrorDetails?: {
-    errorCode: string;
-    errorMessage: string;
+    errorCode?: number;
+    errorMessage?: string;
   };
 }
 
