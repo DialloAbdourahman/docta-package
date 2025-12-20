@@ -9,6 +9,7 @@ import {
   EnumTranzakCurrency,
   EnumTranzakRefundStatus,
 } from "../enums/tranzak";
+import { EnumRefundStatus } from "../enums/refund.status";
 
 /**
  * Interface for session configuration percentages
@@ -36,17 +37,17 @@ export interface ISessionPayment {
  * Interface for embedded refund data
  */
 export interface ISessionRefund {
-  webhookId: string;
-  webhookStatus: EnumTranzakRefundStatus;
-  refundId: string;
-  refundedTransactionId: string;
-  currency: EnumTranzakCurrency;
-  serviceId: string;
-  reason: string;
+  webhookId?: string;
+  webhookStatus?: EnumTranzakRefundStatus;
+  refundId?: string;
+  refundedTransactionId?: string;
+  currency?: EnumTranzakCurrency;
+  serviceId?: string;
+  reason?: string;
   refundStartedAt?: number;
   refundCompletedAt?: number;
   refundFailedAt?: number;
-  status: EnumTranzakRefundStatus;
+  status: EnumRefundStatus;
 }
 
 /**
@@ -156,6 +157,11 @@ const SessionSchema = new Schema<ISessionDocument>({
     refundStartedAt: { type: Number, required: false },
     refundCompletedAt: { type: Number, required: false },
     refundFailedAt: { type: Number, required: false },
+    status: {
+      type: String,
+      enum: Object.values(EnumRefundStatus),
+      required: false,
+    },
   },
   tranzakErrorDetails: {
     errorCode: { type: String, required: false },
