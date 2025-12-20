@@ -64,6 +64,8 @@ export interface ISession extends IBaseModel {
   meta: ISessionConfig;
   payment?: ISessionPayment;
   refund?: ISessionRefund;
+  errorCode?: string;
+  errorMessage?: string;
 }
 
 /**
@@ -146,6 +148,8 @@ const SessionSchema = new Schema<ISessionDocument>({
     serviceId: { type: String, required: false },
     reason: { type: String, required: false },
   },
+  errorCode: { type: String, required: false },
+  errorMessage: { type: String, required: false },
 });
 
 SessionSchema.plugin(BaseSchemaPlugin);
