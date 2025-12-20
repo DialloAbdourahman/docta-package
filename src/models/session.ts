@@ -10,6 +10,7 @@ import {
   EnumTranzakRefundStatus,
 } from "../enums/tranzak";
 import { EnumRefundStatus } from "../enums/refund.status";
+import { EnumRefundDirection } from "../enums";
 
 /**
  * Interface for session configuration percentages
@@ -48,6 +49,7 @@ export interface ISessionRefund {
   refundCompletedAt?: number;
   refundFailedAt?: number;
   status: EnumRefundStatus;
+  direction?: EnumRefundDirection;
 }
 
 /**
@@ -160,6 +162,11 @@ const SessionSchema = new Schema<ISessionDocument>({
     status: {
       type: String,
       enum: Object.values(EnumRefundStatus),
+      required: false,
+    },
+    direction: {
+      type: String,
+      enum: Object.values(EnumRefundDirection),
       required: false,
     },
   },
