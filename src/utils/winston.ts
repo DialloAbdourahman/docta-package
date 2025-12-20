@@ -1,39 +1,3 @@
-// // src/utils/logger.ts
-// import winston from "winston";
-// import "winston-daily-rotate-file";
-// import path from "path";
-// import fs from "fs";
-
-// const logDir = path.join(process.cwd(), "logs");
-
-// // ensure logs directory exists
-// if (!fs.existsSync(logDir)) {
-//   fs.mkdirSync(logDir, { recursive: true });
-// }
-
-// const transport = new winston.transports.DailyRotateFile({
-//   dirname: logDir,
-//   filename: "%DATE%.log",
-//   datePattern: "YYYY-MM-DD",
-//   zippedArchive: false,
-//   maxSize: "20m",
-//   maxFiles: "14d",
-// });
-
-// export const logger = winston.createLogger({
-//   level: "error",
-//   format: winston.format.combine(
-//     winston.format.timestamp(),
-//     winston.format.json()
-//   ),
-//   transports: [
-//     transport,
-//     new winston.transports.Console({ format: winston.format.simple() }), // optional
-//   ],
-// });
-
-/////////////////////////
-
 import winston from "winston";
 import "winston-daily-rotate-file";
 import path from "path";
@@ -62,7 +26,7 @@ const errorTransport = new winston.transports.DailyRotateFile({
 });
 
 /**
- * DEBUG → file
+ * DEBUG ONLY → file
  */
 const debugTransport = new winston.transports.DailyRotateFile({
   level: "debug",
@@ -71,13 +35,16 @@ const debugTransport = new winston.transports.DailyRotateFile({
   datePattern: "YYYY-MM-DD",
   maxSize: "20m",
   maxFiles: "7d",
+  format: winston.format.combine(
+    winston.format((info) => (info.level === "debug" ? info : false))()
+  ),
 });
 
 /**
- * INFO / WARN / ERROR / DEBUG → console (CloudWatch)
+ * CONSOLE → everything (CloudWatch)
  */
 const consoleTransport = new winston.transports.Console({
-  level: "debug", // allow everything to console
+  level: "debug",
   format: winston.format.combine(
     winston.format.colorize(),
     winston.format.timestamp(),
@@ -90,6 +57,6 @@ const consoleTransport = new winston.transports.Console({
 });
 
 export const logger = winston.createLogger({
-  level: "debug", // minimum accepted level
+  level: "debug",
   transports: [consoleTransport, errorTransport, debugTransport],
 });
