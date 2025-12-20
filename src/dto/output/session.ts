@@ -89,8 +89,10 @@ export class SessionAdminOutputDto extends SessionOutputDto {
   createdBy: UserOutputDto | null;
   updatedBy: UserOutputDto | null;
   deletedBy: UserOutputDto | null;
-  errorCode: string | null;
-  errorMessage: string | null;
+  tranzakErrorDetails: {
+    errorCode: string | null;
+    errorMessage: string | null;
+  } | null;
 
   constructor(session: ISessionDocument) {
     super(session); // call base constructor
@@ -124,7 +126,11 @@ export class SessionAdminOutputDto extends SessionOutputDto {
     this.deletedBy = session.deletedBy
       ? new UserOutputDto(session.deletedBy)
       : null;
-    this.errorCode = session.errorCode || null;
-    this.errorMessage = session.errorMessage || null;
+    this.tranzakErrorDetails = session.tranzakErrorDetails
+      ? {
+          errorCode: session.tranzakErrorDetails.errorCode,
+          errorMessage: session.tranzakErrorDetails.errorMessage,
+        }
+      : null;
   }
 }
