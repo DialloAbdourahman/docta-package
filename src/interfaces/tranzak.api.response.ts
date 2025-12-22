@@ -1,9 +1,10 @@
+import { EnumRefundStatus } from "../enums";
 import {
   EnumTranzakCurrency,
   EnumTranzakEventType,
   EnumTranzakPaymentStatus,
   EnumTranzakReasonCode,
-  EnumTranzakRefundStatus,
+  EnumTranzakWebhookRefundStatus,
 } from "../enums/tranzak";
 
 export type GetPaymentTokenResponseData = {
@@ -52,7 +53,7 @@ export type CreateRefundResponseData = {
   refundedTransactionId: string;
   amount: number;
   currencyCode: EnumTranzakCurrency;
-  status: EnumTranzakRefundStatus.PROCESSING;
+  status: EnumRefundStatus.PROCESSING;
   type: "REFUND";
   merchantRefundRef: string;
   reasonDescription: string;
@@ -132,7 +133,7 @@ export interface TranzakWebhookRefundResource {
   serviceId: string;
   amount: number;
   currencyCode: EnumTranzakCurrency;
-  status: EnumTranzakRefundStatus;
+  status: EnumTranzakWebhookRefundStatus;
   type: "REFUND";
   merchantRefundRef: string | null;
   reasonDescription: string;

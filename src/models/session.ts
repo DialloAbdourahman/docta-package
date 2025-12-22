@@ -7,7 +7,7 @@ import { DoctorModel, IDoctorDocument } from "./doctor";
 import {
   EnumTranzakPaymentStatus,
   EnumTranzakCurrency,
-  EnumTranzakRefundStatus,
+  EnumTranzakWebhookRefundStatus,
 } from "../enums/tranzak";
 import { EnumRefundStatus } from "../enums/refund.status";
 import { EnumRefundDirection } from "../enums";
@@ -39,7 +39,7 @@ export interface ISessionPayment {
  */
 export interface ISessionRefund {
   webhookId?: string;
-  webhookStatus?: EnumTranzakRefundStatus;
+  webhookStatus?: EnumTranzakWebhookRefundStatus;
   refundId?: string;
   refundedTransactionId?: string;
   currency?: EnumTranzakCurrency;
@@ -146,7 +146,7 @@ const SessionSchema = new Schema<ISessionDocument>({
     webhookId: { type: String, required: false },
     webhookStatus: {
       type: String,
-      enum: Object.values(EnumTranzakRefundStatus),
+      enum: Object.values(EnumTranzakWebhookRefundStatus),
       required: false,
     },
     refundId: { type: String, required: false },

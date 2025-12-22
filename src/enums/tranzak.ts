@@ -13,7 +13,7 @@ export enum EnumTranzakPaymentStatus {
   PAYER_REDIRECT_REQUIRED = "PAYER_REDIRECT_REQUIRED",
 }
 
-export enum EnumTranzakRefundStatus {
+export enum EnumTranzakWebhookRefundStatus {
   PENDING = "PENDING",
   APPROVED = "APPROVED",
   REJECTED = "REJECTED",
