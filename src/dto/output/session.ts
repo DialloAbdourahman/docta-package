@@ -24,7 +24,7 @@ export class SessionOutputDto {
   refund: ISessionRefund | null;
   paidAt: number | null;
   cancelledAt: number | null;
-  expiredAt: number | null;
+  expiresAt: number | null;
 
   isDeleted: boolean;
   createdAt: number;
@@ -44,7 +44,7 @@ export class SessionOutputDto {
     this.updatedAt = session.updatedAt;
     this.paidAt = session.paidAt || null;
     this.cancelledAt = session.cancelledAt || null;
-    this.expiredAt = session.expiredAt || null;
+    this.expiresAt = session.expiresAt || null;
   }
 }
 
