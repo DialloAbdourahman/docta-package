@@ -2,7 +2,7 @@ import { Schema, model, Document, Model } from "mongoose";
 import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from "./base";
 import { PeriodModel, IPeriodDocument } from "./period";
 import { PatientModel, IPatientDocument } from "./patient";
-import { SessionStatus } from "../enums/session.status";
+import { EnumSessionStatus } from "../enums/session.status";
 import { DoctorModel, IDoctorDocument } from "./doctor";
 import {
   EnumTranzakPaymentStatus,
@@ -59,7 +59,7 @@ export interface ISession extends IBaseModel {
   period: IPeriodDocument;
   patient: IPatientDocument;
   doctor: IDoctorDocument;
-  status: SessionStatus;
+  status: EnumSessionStatus;
   pricing: {
     totalPrice: number;
     doctorPrice: number;
@@ -109,8 +109,8 @@ const SessionSchema = new Schema<ISessionDocument>({
   },
   status: {
     type: String,
-    enum: Object.values(SessionStatus),
-    default: SessionStatus.CREATED,
+    enum: Object.values(EnumSessionStatus),
+    default: EnumSessionStatus.CREATED,
     required: true,
   },
   pricing: {
