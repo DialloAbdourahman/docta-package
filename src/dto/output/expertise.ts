@@ -1,9 +1,10 @@
 import { IExpertiseDocument } from "../../models";
 import { UserOutputDto } from "./user";
+import { normalizeId } from "../../utils/normalize.id";
 
 // Base DTO for everyone
 export class ExpertiseOutputDto {
-  id: string;
+  id: string | null;
   en: { name: string; description: string | null };
   fr: { name: string; description: string | null } | null;
 
@@ -12,7 +13,7 @@ export class ExpertiseOutputDto {
   updatedAt: number;
 
   constructor(expertise: IExpertiseDocument) {
-    this.id = (expertise.id ?? expertise._id)?.toString();
+    this.id = normalizeId(expertise);
     this.en = {
       name: expertise.en.name,
       description: expertise.en.description || null,

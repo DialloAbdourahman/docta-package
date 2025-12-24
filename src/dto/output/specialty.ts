@@ -1,9 +1,10 @@
 import { ISpecialtyDocument } from "../../models";
 import { UserOutputDto } from "./user";
+import { normalizeId } from "../../utils/normalize.id";
 
 // Base DTO for everyone
 export class SpecialtyOutputDto {
-  id: string;
+  id: string | null;
   en: { name: string; description: string | null };
   fr: { name: string; description: string | null } | null;
 
@@ -12,7 +13,7 @@ export class SpecialtyOutputDto {
   updatedAt: number;
 
   constructor(specialty: ISpecialtyDocument) {
-    this.id = (specialty.id ?? specialty._id)?.toString();
+    this.id = normalizeId(specialty);
     this.en = {
       name: specialty.en.name,
       description: specialty.en.description || null,

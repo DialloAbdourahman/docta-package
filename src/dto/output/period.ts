@@ -1,10 +1,11 @@
 import { IPeriodDocument } from "../../models";
 import { UserOutputDto } from "./user";
 import { PeriodStatus } from "../../enums/period.status";
+import { normalizeId } from "../../utils/normalize.id";
 
 // Base DTO for everyone
 export class PeriodOutputDto {
-  id: string;
+  id: string | null;
   doctorId: string;
   startTime: number;
   endTime: number;
@@ -15,7 +16,7 @@ export class PeriodOutputDto {
   updatedAt: number;
 
   constructor(period: IPeriodDocument) {
-    this.id = (period.id ?? period._id)?.toString();
+    this.id = normalizeId(period);
     this.doctorId = String(period.doctor._id);
     this.startTime = period.startTime;
     this.endTime = period.endTime;

@@ -7,9 +7,10 @@ import { PositionOutputDto } from "./position";
 import { LanguageOutputDto } from "./language";
 import { FaqOutputDto } from "./faq";
 import { LocationOutputDto } from "./location";
+import { normalizeId } from "../../utils/normalize.id";
 
 export class DoctorPublicOutputDto {
-  id: string;
+  id: string | null;
   specialty: SpecialtyOutputDto;
   title: string;
   professionalEmail: string;
@@ -29,7 +30,7 @@ export class DoctorPublicOutputDto {
   location: LocationOutputDto | null;
 
   constructor(doctor: IDoctorDocument) {
-    this.id = (doctor.id ?? doctor._id)?.toString();
+    this.id = normalizeId(doctor);
     this.title = doctor.title;
     this.professionalEmail = doctor.professionalEmail;
     this.dontBookMeBeforeInMins = doctor.dontBookMeBeforeInMins;

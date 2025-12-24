@@ -1,15 +1,16 @@
 import { Gender } from "../../enums";
 import { IPatientDocument } from "../../models";
 import { UserOutputDto, UserPublicOutputDto } from "./user";
+import { normalizeId } from "../../utils/normalize.id";
 
 class OutputDto {
-  id: string;
+  id: string | null;
   dob: number | null;
   phoneNumber: string | null;
   gender: Gender | null;
 
   constructor(patient: IPatientDocument) {
-    this.id = (patient.id ?? patient._id)?.toString();
+    this.id = normalizeId(patient);
     this.dob = patient.dob || null;
     this.phoneNumber = patient.phoneNumber || null;
     this.gender = patient.gender || null;

@@ -1,13 +1,14 @@
 import { IUserDocument } from "../../models";
+import { normalizeId } from "../../utils/normalize.id";
 
 export class UserPublicOutputDto {
-  id: string;
+  id: string | null;
   name: string;
   email: string;
   role: string;
 
   constructor(user: IUserDocument) {
-    this.id = (user.id ?? user._id)?.toString();
+    this.id = normalizeId(user);
     this.name = user.name;
     this.email = user.email;
     this.role = user.role;
