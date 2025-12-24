@@ -17,7 +17,7 @@ interface ISessionConfigOutput {
 
 // Base DTO for everyone
 export class SessionOutputDto {
-  id: string;
+  id: string | null;
   period: PeriodOutputDto;
   status: string;
   doctorId: string | null;
@@ -32,7 +32,8 @@ export class SessionOutputDto {
   updatedAt: number;
 
   constructor(session: ISessionDocument) {
-    this.id = (session.id ?? session._id)?.toString();
+    this.id = normalizeId(session);
+    // (session.id ?? session._id)?.toString();
     this.period = new PeriodOutputDto(session.period);
     this.status = session.status;
     this.doctorId =
