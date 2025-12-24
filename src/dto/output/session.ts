@@ -3,6 +3,7 @@ import {
   ISessionPayment,
   ISessionRefund,
 } from "../../models";
+import { normalizeId } from "../../utils/normalize.id";
 import { PeriodOutputDto } from "./period";
 import { UserOutputDto } from "./user";
 
@@ -35,9 +36,11 @@ export class SessionOutputDto {
     this.period = new PeriodOutputDto(session.period);
     this.status = session.status;
     this.doctorId =
-      (session.doctor.id ?? session.doctor._id)?.toString() || null;
+      // (session.doctor.id ?? session.doctor._id)?.toString() || null;
+      normalizeId(session.doctor);
     this.patientId =
-      (session.patient.id ?? session.patient._id)?.toString() || null;
+      // (session.patient.id ?? session.patient._id)?.toString() || null;
+      normalizeId(session.patient);
     this.refund = session.refund || null;
     this.isDeleted = session.isDeleted;
     this.createdAt = session.createdAt;
