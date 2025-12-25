@@ -1,7 +1,7 @@
 import { IDoctorDocument } from "../../models";
 import { SpecialtyOutputDto } from "./specialty";
 import { ExpertiseOutputDto } from "./expertise";
-import { UserOutputDto, UserPublicOutputDto } from "./user";
+import { UserOutputDto } from "./user";
 import { EducationOutputDto } from "./education";
 import { PositionOutputDto } from "./position";
 import { LanguageOutputDto } from "./language";
@@ -28,6 +28,7 @@ export class DoctorPublicOutputDto {
   faqs: FaqOutputDto[];
   expertises: ExpertiseOutputDto[];
   location: LocationOutputDto | null;
+  averageRating: number;
 
   constructor(doctor: IDoctorDocument) {
     this.id = normalizeId(doctor);
@@ -42,6 +43,7 @@ export class DoctorPublicOutputDto {
     this.isVerified = doctor.isVerified;
     this.isVisible = doctor.isVisible;
     this.photo = doctor.photo || null;
+    this.averageRating = doctor?.averageRating || 0;
     this.educations = (doctor.educations || [])
       .map((e) => new EducationOutputDto(e))
       .sort((a, b) => b.year - a.year);

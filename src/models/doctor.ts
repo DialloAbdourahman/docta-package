@@ -29,6 +29,7 @@ export interface IDoctor extends IBaseModel {
   faqs: IFaq[];
   expertises: IExpertiseDocument[];
   location?: ILocation;
+  averageRating: number;
 }
 
 export interface IDoctorDocument extends IDoctor, Document {}
@@ -69,6 +70,7 @@ const DoctorSchema = new Schema<IDoctorDocument>({
     default: [],
   },
   location: { type: LocationSchema, required: false },
+  averageRating: { type: Number, required: false, default: 0 },
 });
 
 const createSlug = (text: string): string =>
