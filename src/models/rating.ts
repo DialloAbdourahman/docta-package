@@ -1,6 +1,5 @@
 import { Schema, model, Document, Model } from "mongoose";
 import { BaseSchemaFields, BaseSchemaPlugin, IBaseModel } from "./base";
-import { EnumRatingValue } from "../enums/rating";
 import { PatientModel, IPatientDocument } from "./patient";
 import { DoctorModel, IDoctorDocument } from "./doctor";
 import { SessionModel, ISessionDocument } from "./session";
@@ -9,7 +8,7 @@ import { SessionModel, ISessionDocument } from "./session";
  * Rating interface
  */
 export interface IRating extends IBaseModel {
-  rating: EnumRatingValue;
+  rating: number;
   message: string;
   session: ISessionDocument;
   patient: IPatientDocument;
@@ -30,7 +29,8 @@ const RatingSchema = new Schema<IRatingDocument>({
 
   rating: {
     type: Number,
-    enum: Object.values(EnumRatingValue),
+    min: 1,
+    max: 5,
     required: true,
   },
   message: {

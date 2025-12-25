@@ -1,12 +1,11 @@
 import { IRatingDocument } from "../../models/rating";
-import { EnumRatingValue } from "../../enums/rating";
 import { normalizeId } from "../../utils/normalize.id";
 import { UserOutputDto } from "./user";
 
 // Base DTO for everyone
 export class RatingOutputDto {
   id: string | null;
-  rating: EnumRatingValue;
+  rating: number;
   message: string;
   sessionId: string | null;
   patientId: string | null;

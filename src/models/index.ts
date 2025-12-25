@@ -11,4 +11,3 @@ export * from "./position";
 export * from "./specialty";
 export * from "./user";
 export * from "./session";
-export * from "./rating";
