@@ -10,3 +10,4 @@ export * from "./specialty";
 export * from "./user";
 export * from "./period";
 export * from "./session";
+export * from "./rating";

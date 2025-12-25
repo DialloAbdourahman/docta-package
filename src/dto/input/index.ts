@@ -9,3 +9,4 @@ export * from "./position";
 export * from "./specialty";
 export * from "./user";
 export * from "./period";
+export * from "./rating";
