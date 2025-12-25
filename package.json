@@ -13,7 +13,8 @@
     "prepublishOnly": "npm run build",
     "release:patch": "npm version patch -m 'Release %s' && npm run build && npm publish --access public",
     "release:minor": "npm version minor -m 'Release %s' && npm run build && npm publish --access public",
-    "release:major": "npm version major -m 'Release %s' && npm run build && npm publish --access public"
+    "release:major": "npm version major -m 'Release %s' && npm run build && npm publish --access public",
+    "small-fix": "git add . && git commit -m 'small fix' && git push && npm run release:patch"
   },
   "author": "",
   "license": "ISC",

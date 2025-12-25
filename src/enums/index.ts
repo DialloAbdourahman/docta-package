@@ -11,4 +11,3 @@ export * from "./session.status";
 export * from "./tranzak";
 export * from "./refund.direction";
 export * from "./refund.status";
-export * from "./rating";
