@@ -7,8 +7,7 @@ export class RatingOutputDto {
   id: string | null;
   rating: number;
   message: string;
-  sessionId: string | null;
-  patientId: string | null;
+
   doctorId: string | null;
 
   isDeleted: boolean;
@@ -19,8 +18,7 @@ export class RatingOutputDto {
     this.id = normalizeId(rating);
     this.rating = rating.rating;
     this.message = rating.message;
-    this.sessionId = normalizeId(rating.session);
-    this.patientId = normalizeId(rating.patient);
+
     this.doctorId = normalizeId(rating.doctor);
     this.isDeleted = rating.isDeleted;
     this.createdAt = rating.createdAt;
@@ -30,12 +28,17 @@ export class RatingOutputDto {
 
 // Extended DTO for admin responses
 export class RatingAdminOutputDto extends RatingOutputDto {
+  sessionId: string | null;
+  patientId: string | null;
   createdBy: UserOutputDto | null;
   updatedBy: UserOutputDto | null;
   deletedBy: UserOutputDto | null;
 
   constructor(rating: IRatingDocument) {
     super(rating); // call base constructor
+
+    this.sessionId = normalizeId(rating.session);
+    this.patientId = normalizeId(rating.patient);
 
     this.createdBy = rating.createdBy
       ? new UserOutputDto(rating.createdBy)
